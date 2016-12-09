@@ -11,7 +11,8 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
 public class Jogo implements GLEventListener {
-
+    
+    private float rtri;
     public static void main(String[] args) {
         Frame frame = new Frame("Jogo");
         GLCanvas canvas = new GLCanvas();
@@ -77,8 +78,26 @@ public class Jogo implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
+         
+        // Move the "drawing cursor" around
+        gl.glTranslatef(-1.5f, 0.0f, -6.0f);  
+        gl.glScalef( 0.30f,0.30f,0.30f );
+        //triangle rotation
+        gl.glRotatef( rtri, 0.0f, 0.0f,1 );  
+      
+        // Drawing Using Triangles
+        gl.glBegin(GL.GL_TRIANGLES);
+            gl.glColor3f(1f,0f,0f);
+            gl.glVertex3f(0, 1, 0);   // Top   
+            gl.glVertex3f(-1, -1, 0); // Bottom Left
+            gl.glVertex3f(1, -1, 0);  // Bottom Right
+        // Finished Drawing The Triangle
+        gl.glEnd();
+
+        
         // Flush all drawing operations to the graphics card
         gl.glFlush();
+        rtri += 0.2f;
     }
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
