@@ -18,7 +18,7 @@ public class Jogo implements GLEventListener {
 
         canvas.addGLEventListener(new Jogo());
         frame.add(canvas);
-        frame.setSize(640, 480);
+        frame.setSize(800, 600);
         final Animator animator = new Animator(canvas);
         frame.addWindowListener(new WindowAdapter() {
 
@@ -28,7 +28,6 @@ public class Jogo implements GLEventListener {
                 // make sure the call to Animator.stop() completes before
                 // exiting
                 new Thread(new Runnable() {
-
                     public void run() {
                         animator.stop();
                         System.exit(0);
